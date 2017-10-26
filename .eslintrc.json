@@ -1,0 +1,21 @@
+{
+  "extends": "standard",
+  "plugins": [
+    "standard",
+    "promise"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "semi": "off",
+    "one-var": "off",
+    "space-before-function-paren": "off",
+    "no-unused-vars": "warn",
+    "no-return-assign": "warn"
+  }
+}
