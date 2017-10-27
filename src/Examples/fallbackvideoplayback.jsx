@@ -11,6 +11,7 @@ export class FallbackVideoPlayBack extends React.Component {
         controls
         width="640"
         height="264"
+        autoPlay
         preload="auto">
       </video>
     </div>;
@@ -37,6 +38,11 @@ export class FallbackVideoPlayBack extends React.Component {
       this.player.on('error', err => {
         console.log(err);
         console.log('An error has occured for the fallback video player.');
+        console.log('Fallback to working video manually.');
+        this.player.src({
+          type: 'video/mp4',
+          src: 'https://ideastv.s3.amazonaws.com/IDTV533_181017_IDTV_PB_1Mbit_720p.mp4'
+        });
       })
 
       this.player.on('ready', () => {
