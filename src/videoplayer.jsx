@@ -51,7 +51,7 @@ export class VideoPlayer extends React.Component {
         <div>
           <button onClick={ this.play }>Play</button>
           <button onClick={ this.stop }>Stop</button>
-          <button onClick={ this.jumpToOneMinute }>Jump to one second</button>
+          <button onClick={ this.jumpToOneMinute }>Jump to one minute</button>
         </div>
       </div>
     )
