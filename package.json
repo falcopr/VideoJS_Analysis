@@ -4,7 +4,7 @@
   "description": "Analysing the capabilities of VideoJS for playing videos from different sources",
   "main": "server.js",
   "scripts": {
-    "preinstall": "npm install -g eslint",
+    "preinstall": "npm install -g eslint eslint-plugin-class-property",
     "start": "node server.js",
     "build": "./node_modules/.bin/webpack --config webpack.config.js --display-modules",
     "watch": "./node_modules/.bin/webpack --config webpack.config.js --watch --display-modules"
@@ -27,6 +27,7 @@
     "css-loader": "^0.28.7",
     "eslint": "^4.9.0",
     "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-class-property": "^1.0.6",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-promise": "^3.6.0",
