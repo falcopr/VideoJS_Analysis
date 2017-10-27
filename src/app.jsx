@@ -3,18 +3,22 @@ import { render } from 'react-dom';
 
 import { Mp4PlayBackDeclarative } from 'Examples/mp4playbackdeclarative.jsx';
 import { Mp4PlayBackImperative } from 'Examples/mp4playbackimperative.jsx';
+import { Mp4PlayBack } from 'Examples/mp4playback.jsx';
 import { YoutubePlayBack } from 'Examples/youtubeplayback.jsx';
 import { YoutubeShortUrlPlayBack } from 'Examples/youtubeshorturlplayback.jsx';
 import { VimeoPlayBack } from 'Examples/vimeoplayback.jsx';
+import { FallbackVideoPlayBack } from 'Examples/fallbackvideoplayback.jsx';
 
 class App extends React.Component {
   render() {
     return <div>
       <h1>VideoJS for Retail</h1>
-      <YoutubeShortUrlPlayBack></YoutubeShortUrlPlayBack>
+      <Mp4PlayBack></Mp4PlayBack>
       <YoutubePlayBack></YoutubePlayBack>
+      <YoutubeShortUrlPlayBack></YoutubeShortUrlPlayBack>
       <Mp4PlayBackDeclarative></Mp4PlayBackDeclarative>
       <Mp4PlayBackImperative></Mp4PlayBackImperative>
+      <FallbackVideoPlayBack></FallbackVideoPlayBack>
       <VimeoPlayBack></VimeoPlayBack>
     </div>;
   }
