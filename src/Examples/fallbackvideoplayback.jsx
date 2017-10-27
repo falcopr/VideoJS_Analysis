@@ -47,6 +47,14 @@ export class FallbackVideoPlayBack extends React.Component {
       this.player.on('ended', () => {
         videojs.log('Awww...over so soon?!');
       });
+
+      this.player.on('canplaythrough', () => {
+        console.log('canplaythrough event fired for YouTube to .mp4 fallback.');
+      });
+
+      this.player.on('canplay', () => {
+        console.log('canplay event fired for YouTube to .mp4 fallback.');
+      });
     })();
   }
 

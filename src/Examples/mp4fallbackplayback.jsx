@@ -34,6 +34,11 @@ export class Mp4FallbackVideoPlayBack extends React.Component {
       this.player.on('error', err => {
         console.log(err);
         console.log('An error has occured for the fallback video player.');
+        console.log('Fallback to working video manually.');
+        this.player.src({
+          type: 'video/mp4',
+          src: 'https://ideastv.s3.amazonaws.com/IDTV533_181017_IDTV_PB_1Mbit_720p.mp4'
+        });
       })
 
       this.player.on('ready', () => {
@@ -43,6 +48,14 @@ export class Mp4FallbackVideoPlayBack extends React.Component {
 
       this.player.on('ended', () => {
         videojs.log('Awww...over so soon?!');
+      });
+
+      this.player.on('canplaythrough', () => {
+        console.log('canplaythrough event fired for .mp4 fallback.');
+      });
+
+      this.player.on('canplay', () => {
+        console.log('canplay event fired for .mp4 fallback.');
       });
     })();
   }
