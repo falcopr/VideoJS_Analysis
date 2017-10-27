@@ -9,6 +9,7 @@ import { YoutubePlayBack } from 'Examples/youtubeplayback';
 import { YoutubeShortUrlPlayBack } from 'Examples/youtubeshorturlplayback';
 import { VimeoPlayBack } from 'Examples/vimeoplayback';
 import { FallbackVideoPlayBack } from 'Examples/fallbackvideoplayback';
+import { FallbackWithPreCheckVideoPlayBack } from 'Examples/fallbackwithprecheckvideoplayback';
 
 class App extends React.Component {
   render() {
@@ -21,6 +22,7 @@ class App extends React.Component {
       <Mp4PlayBackImperative></Mp4PlayBackImperative>
       <Mp4FallbackVideoPlayBack></Mp4FallbackVideoPlayBack>
       <FallbackVideoPlayBack></FallbackVideoPlayBack>
+      <FallbackWithPreCheckVideoPlayBack></FallbackWithPreCheckVideoPlayBack>
       <VimeoPlayBack></VimeoPlayBack>
     </div>;
   }
