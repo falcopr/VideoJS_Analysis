@@ -25,7 +25,7 @@ export class FallbackWithPreCheckVideoPlayBack extends React.Component {
       }
 
       image.onerror = () => {
-        resolve('Fav icon can not be loaded successfully! Either it is because the site does not exist or you are behind a proxy.');
+        reject(new Error('Fav icon can not be loaded successfully! Either it is because the site does not exist or you are behind a proxy.'));
       }
 
       image.src = favIconURL
