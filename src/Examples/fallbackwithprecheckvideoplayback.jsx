@@ -1,6 +1,5 @@
 import videojs from './../../node_modules/video.js/dist/video.cjs.js';
 import React from 'react';
-import $ from 'jquery';
 
 export class FallbackWithPreCheckVideoPlayBack extends React.Component {
   render() {
@@ -18,10 +17,27 @@ export class FallbackWithPreCheckVideoPlayBack extends React.Component {
     </div>;
   }
 
-  checkIfYouTubeVideoExists(videoID) {
+  isFavIconAvailable(favIconURL) {
     return new Promise((resolve, reject) => {
-      $.getJSON(`http://gdata.youtube.com/feeds/api/videos/${videoID}?v=2&alt=jsonc`, resolve).error(reject)
+      let image = new window.Image();
+      image.onload = () => {
+        resolve('Fav icon can be loaded successfully!');
+      }
+
+      image.onerror = () => {
+        resolve('Fav icon can not be loaded successfully! Either it is because the site does not exist or you are behind a proxy.');
+      }
+
+      image.src = favIconURL
     });
+  }
+
+  isYouTubeAvailable() {
+    return this.isFavIconAvailable('https://youtube.com/favicon.ico');
+  }
+
+  isAWSAvailable() {
+    return this.isFavIconAvailable('https://ideasdailytv.s3.amazonaws.com/test/s3_source.ico');
   }
 
   componentDidMount() {
@@ -31,29 +47,30 @@ export class FallbackWithPreCheckVideoPlayBack extends React.Component {
         'techOrder': ['youtube', 'html5']
       });
 
+      let videoSrc = [];
       try {
-        await this.checkIfYouTubeVideoExists('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
-      } catch (err) {
-        this.player.src([{
-          // src: 'https://www.youtube.com/watch?v=wbFk-YrZECc',
-          // https://github.com/videojs/video.js/issues/1316
-          // Fallback does not work. How to detect if an video can be played?
+        await this.isYouTubeAvailable();
+        videoSrc.push({
           src: 'https://www.youtube.com/watch?v=wbFk-YrZECc',
           type: 'video/youtube'
-        }, {
+        });
+      } catch (err) {
+      }
+
+      try {
+        await this.isAWSAvailable();
+        videoSrc.push({
           type: 'video/mp4',
           src: 'https://ideastv.s3.amazonaws.com/IDTV533_181017_IDTV_PB_1Mbit_720p.mp4'
-        }]);
+        });
+      } catch (err) {
       }
+
+      this.player.src(videoSrc);
 
       this.player.on('error', err => {
         console.log(err);
         console.log('An error has occured for the fallback video player.');
-        console.log('Fallback to working video manually.');
-        this.player.src({
-          type: 'video/mp4',
-          src: 'https://ideastv.s3.amazonaws.com/IDTV533_181017_IDTV_PB_1Mbit_720p.mp4'
-        });
       })
 
       this.player.on('ready', () => {
